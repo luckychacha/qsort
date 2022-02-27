@@ -18,7 +18,9 @@ actor QSort {
             return;
         };
         let partitionIndex = partition(arr, leftIdx, rightIdx);
-        deal(arr, leftIdx, partitionIndex - 1);
+        if (partitionIndex != 0) {
+            deal(arr, leftIdx, partitionIndex - 1);
+        };
 
         deal(arr, partitionIndex + 1, rightIdx);
     };
