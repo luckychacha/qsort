@@ -2,14 +2,17 @@ import Debug "mo:base/Debug";
 import Array "mo:base/Array";
 import Int "mo:base/Int";
 
-func quicksort(arr: [Int]): [Int] {
-    if (arr.size() < 2) {
-        return arr;
+func quicksort(arr: [var Int]) : () {
+    if (arr.size() > 2) {
+        deal(arr, 0, arr.size() - 1);
     };
-    let mutArr: [var Int] = Array.thaw<Int>(arr);
+    // let mutArr: [var Int] = Array.thaw<Int>(arr);
 
-    deal(mutArr, 0, mutArr.size() - 1);
-    return Array.freeze<Int>(mutArr);
+    var i = 0;
+    while (i < arr.size()) {
+        Debug.print(Int.toText(arr[i]));
+        i := i + 1;
+    };
 };
 
 func deal(arr: [var Int], leftIdx: Nat, rightIdx: Nat) {
@@ -47,10 +50,5 @@ func swap(mutArr: [var Int], i: Nat, j: Nat) {
     mutArr[j] := tmp;
 };
 
-let tmp = [5, 4, 3, 2, 1];
-let a = quicksort(tmp);
-var i = 0;
-while (i < a.size()) {
-    Debug.print(Int.toText(a[i]));
-    i := i + 1;
-};
+let tmp: [var Int] = [var 5, 4, 3, 2, 1];
+quicksort(tmp);
